@@ -15,5 +15,7 @@
 <style>
   article {
     height: 100%;
+    padding-top: 16px;
+    position: relative;
   }
 </style>

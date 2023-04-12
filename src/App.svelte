@@ -14,12 +14,16 @@
   <div class="main-actions">
     <button
       class="m-btn"
-      on:click={() => (page = "home")}
+      on:click={() => {
+        page = "home";
+      }}
       class:selected={page === "home"}>Home</button
     >
     <button
       class="m-btn"
-      on:click={() => (page = "about")}
+      on:click={() => {
+        page = "about";
+      }}
       class:selected={page === "about"}>About</button
     >
     <a href="/docs" target="_blank" class="m-btn">Docs</a>
@@ -50,6 +54,9 @@
 </main>
 
 <style>
+  header {
+    border-bottom: 2px solid var(--divider-clr);
+  }
   #me {
     font-size: 1rem;
     color: var(--sec-txt-clr);

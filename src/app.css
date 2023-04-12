@@ -109,6 +109,7 @@ a {
 
 input[type="text"],
 input[type="password"],
+input[type="number"],
 textarea,
 select {
   color: inherit;
@@ -122,6 +123,7 @@ select {
 
 input[type="text"]:focus,
 input[type="password"]:focus,
+input[type="number"]:focus,
 textarea:focus,
 select:focus {
   border: 1px solid var(--input-border-focus-clr);
@@ -145,6 +147,14 @@ select:focus {
 
 .btn:hover {
   border: 1px solid var(--primary-clr);
+}
+
+.btn:disabled,
+.btn:disabled:hover {
+  background-color: var(--bg-clr-sec);
+  color: var(--sec-txt-clr);
+  border: 1px solid transparent;
+  cursor: default;
 }
 
 .a-btn {

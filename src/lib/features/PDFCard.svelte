@@ -1,8 +1,40 @@
 <script>
+  import download from "downloadjs/download.min";
   import { displaySize, localizeDate } from "../../utils";
-  import { unit } from "../../stores";
+  import { unit, username, password, feature, _pdf } from "../../stores";
   import Tooltip from "../Tooltip.svelte";
+  import Loading from "../Loading.svelte";
+
+  let downloading = false;
   export let pdf;
+  const UNITS = ["Byte", "KB", "MB"];
+  function changeUnit() {
+    const i = UNITS.indexOf($unit);
+    if (i >= 0 && i < UNITS.length - 1) {
+      unit.update((_) => UNITS[i + 1]);
+    } else {
+      unit.update((_) => UNITS[0]);
+    }
+  }
+
+  function downloadPDF() {
+    downloading = true;
+    fetch("http://localhost:8000/pdf/download/" + pdf.id.toString() + "/", {
+      method: "GET",
+      headers: {
+        Authorization: "Basic " + btoa($username + ":" + $password),
+      },
+    })
+      .then((res) => res.blob())
+      .then((blob) => download(blob, pdf.file_name, "pdf"))
+      .finally(() => {
+        downloading = false;
+      });
+  }
+
+  function setPDF() {
+    _pdf.update((_) => pdf);
+  }
 </script>
 
 <div class="card pdf">
@@ -25,16 +57,32 @@
       <button class="btn">Top 5</button>
     </Tooltip>
     <Tooltip tip="Check the occurrence of a word"
-      ><button class="btn">Word</button></Tooltip
+      ><button
+        class="btn"
+        on:click={() => {
+          setPDF();
+          feature.update((_) => "word");
+        }}>Word</button
+      ></Tooltip
     >
     <Tooltip tip="Get a page as an image"
-      ><button class="btn">Page</button></Tooltip
+      ><button
+        class="btn"
+        on:click={() => {
+          setPDF();
+          feature.update((_) => "page");
+        }}>Page</button
+      ></Tooltip
     >
-    <Tooltip tip="Retrieve this PDF"
-      ><button class="btn">Download</button></Tooltip
-    >
+    {#if downloading}
+      <Loading />
+    {:else}
+      <Tooltip tip="Retrieve this PDF"
+        ><button class="btn" on:click={downloadPDF}>Download</button></Tooltip
+      >
+    {/if}
     <Tooltip tip="Change the size unit">
-      <button class="btn">Unit</button>
+      <button class="btn" on:click={changeUnit}>Unit</button>
     </Tooltip>
     <Tooltip tip="Delete this PDF file and all its related data"
       ><button class="btn del-btn">Delete</button></Tooltip

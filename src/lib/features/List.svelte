@@ -18,13 +18,14 @@
       method: "POST",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ page: $pagePDFList, paginate: $paginatePDFList }),
     })
       .then((res) => res.json())
       .then((data) => {
         fetching = false;
-        pdfList = data;
+        pdfList = data.results;
       });
   }
 
