@@ -17,7 +17,7 @@
 <style>
   #back {
     position: absolute;
-    top: 8px;
+    top: -8px;
     left: 0;
     z-index: 10;
   }

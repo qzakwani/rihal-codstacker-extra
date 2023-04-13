@@ -51,10 +51,22 @@
 
   <div class="actions">
     <Tooltip tip="Get all the parsed sentences">
-      <button class="btn">Sentences</button>
+      <button
+        class="btn"
+        on:click={() => {
+          setPDF();
+          feature.update((_) => "sens");
+        }}>Sentences</button
+      >
     </Tooltip>
     <Tooltip tip="Top 5 occurring words">
-      <button class="btn">Top 5</button>
+      <button
+        class="btn"
+        on:click={() => {
+          setPDF();
+          feature.update((_) => "top5");
+        }}>Top 5</button
+      >
     </Tooltip>
     <Tooltip tip="Check the occurrence of a word"
       ><button

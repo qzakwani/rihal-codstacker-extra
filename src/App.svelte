@@ -54,9 +54,6 @@
 </main>
 
 <style>
-  header {
-    border-bottom: 2px solid var(--divider-clr);
-  }
   #me {
     font-size: 1rem;
     color: var(--sec-txt-clr);
