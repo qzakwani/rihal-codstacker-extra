@@ -20,6 +20,8 @@
     right: 0;
     bottom: 0;
 
+    backdrop-filter: blur(16px);
+
     display: flex;
     align-items: center;
     justify-content: center;

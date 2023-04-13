@@ -7,6 +7,8 @@
   import Top5 from "./Top5.svelte";
   import Sentences from "./Sentences.svelte";
   import Search from "./Search.svelte";
+  import Upload from "./Upload.svelte";
+  import NewUpload from "./NewUpload.svelte";
 </script>
 
 {#if $feature === "list"}
@@ -26,4 +28,10 @@
 {:else if $feature === "sens"}
   <Back />
   <Sentences />
+{:else if $feature === "upload"}
+  <Back />
+  <Upload />
+{:else if $feature === "new"}
+  <Back />
+  <NewUpload />
 {/if}

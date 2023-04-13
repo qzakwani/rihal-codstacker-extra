@@ -44,6 +44,7 @@
 <style>
   article {
     height: 100%;
+    padding-bottom: 28px;
   }
 
   .actions {

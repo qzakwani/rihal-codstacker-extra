@@ -1,4 +1,5 @@
 <script>
+  import ASM from "./ASM";
   export let search;
   export let detectEnter;
   export let mode;
@@ -63,6 +64,7 @@
     {mode}
   </div>
 </div>
+<pre>{ASM[mode]}</pre>
 
 <style>
   label {
@@ -91,12 +93,16 @@
     transform: translateY(-50%);
     left: 8px;
     font-size: 14px;
-    background-color: rgba(97, 12, 4, 1);
     background-color: #2bc9af;
     border-radius: 3px;
     width: 40px;
     font-weight: 600;
-    color: white;
     color: black;
+  }
+
+  pre {
+    font-size: 12px;
+    text-align: left;
+    /* width: 500px; */
   }
 </style>

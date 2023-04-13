@@ -13,6 +13,7 @@
   let sType = "Regular";
   let mode = "def";
   let resMode = mode;
+  let empty = false;
 
   $: invalid = search === "" ? true : false;
 
@@ -22,6 +23,7 @@
     }
     keyword = search;
     res = [];
+    empty = false;
     let url = "http://localhost:8000/search/";
     let sentSearch = search;
     if (sType === "Advanced") {
@@ -54,6 +56,9 @@
         } else {
           resMode = data.mode;
           res = data.results;
+        }
+        if (res.length === 0) {
+          empty = true;
         }
       })
       .catch(() => {})
@@ -132,7 +137,11 @@
       {/if}
     {/if}
   </div>
-
+  {#if empty}
+    <p style="color: var(--sec-txt-clr); font-weight:900; letter-spacing: 2px;">
+      ... No Result! ...
+    </p>
+  {/if}
   {#if res.length !== 0}
     <div class="result">
       <div class="search-info">
@@ -142,6 +151,7 @@
           <p>Mode: {resMode}</p>
         {/if}
       </div>
+
       {#each res as r}
         <div class="card res" style="padding: 0;">
           <p class="id">{r.pdf_ID}</p>

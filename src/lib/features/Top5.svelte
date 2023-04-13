@@ -1,7 +1,8 @@
 <script>
-  import { username, password, _pdf } from "../../stores";
+  import { username, password, _pdf, _stopWords } from "../../stores";
   import { isEmpty } from "../../utils";
   import Loading from "../Loading.svelte";
+  import StopWords from "./StopWords.svelte";
 
   let ignore = "";
   let top = 5;
@@ -28,9 +29,37 @@
       });
   }
 
+  let showSW = false;
+  let fetchingSW = false;
+  function stopWords() {
+    if ($_stopWords.length !== 0) {
+      showSW = true;
+      return;
+    } else {
+      fetchingSW = true;
+      fetch("http://localhost:8000/search/stop-words/", {
+        method: "GET",
+        headers: {
+          Authorization: "Basic " + btoa($username + ":" + $password),
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          $_stopWords = data.stop_words;
+          showSW = true;
+        })
+        .finally(() => {
+          fetchingSW = false;
+        });
+    }
+  }
+
   refresh();
 </script>
 
+{#if showSW}
+  <StopWords bind:showSW />
+{/if}
 <div class="container">
   <div class="info">
     <h3 class="title">Top Words</h3>
@@ -52,6 +81,11 @@
       <Loading />
     {:else}
       <button class="btn" on:click={refresh}>Refresh</button>
+    {/if}
+    {#if fetchingSW}
+      <Loading />
+    {:else}
+      <button class="btn" on:click={stopWords}>Stop Words</button>
     {/if}
   </div>
 

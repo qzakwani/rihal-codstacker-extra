@@ -6,11 +6,11 @@
     password,
     pagePDFList,
     paginatePDFList,
+    pdfList,
   } from "../../stores";
 
   let fetching = false;
 
-  let pdfList = [];
   let currentPage = "";
 
   function fetchList() {
@@ -26,7 +26,7 @@
       .then((res) => res.json())
       .then((data) => {
         currentPage = data.page;
-        pdfList = data.results;
+        pdfList.update((_) => data.results);
       })
       .finally((_) => {
         fetching = false;
@@ -44,7 +44,7 @@
       .then((res) => res.json())
       .then((data) => {
         currentPage = "All";
-        pdfList = data;
+        pdfList.update((_) => data);
       })
       .finally((_) => {
         fetching = false;
@@ -70,10 +70,14 @@
 
 {#if fetching}
   <Loading />
+{:else if $pdfList.length === 0}
+  <p style="color: var(--sec-txt-clr); font-weight:900; letter-spacing: 2px;">
+    ... No PDF! ...
+  </p>
 {:else}
   <div class="pdf-list">
-    {#each pdfList as pdf (pdf.id)}
-      <PdfCard {pdf} />
+    {#each $pdfList as pdf, i (i)}
+      <PdfCard {pdf} {i} />
     {/each}
   </div>
 {/if}
