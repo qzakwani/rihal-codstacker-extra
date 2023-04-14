@@ -24,10 +24,10 @@
     keyword = search;
     res = [];
     empty = false;
-    let url = "http://localhost:8000/search/";
+    let url = "/search/";
     let sentSearch = search;
     if (sType === "Advanced") {
-      url = "http://localhost:8000/search/advanced/";
+      url = "/search/advanced/";
       sentSearch = mode + ":" + search;
     }
     fetching = true;

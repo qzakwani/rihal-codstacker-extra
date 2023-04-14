@@ -15,7 +15,7 @@
 
   function fetchList() {
     fetching = true;
-    fetch("http://localhost:8000/pdf/list/", {
+    fetch("/pdf/list/", {
       method: "POST",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),
@@ -35,7 +35,7 @@
 
   function fetchAll() {
     fetching = true;
-    fetch("http://localhost:8000/pdf/list/", {
+    fetch("/pdf/list/", {
       method: "GET",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),

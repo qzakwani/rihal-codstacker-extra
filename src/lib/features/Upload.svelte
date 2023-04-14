@@ -11,7 +11,7 @@
   function upload() {
     const files = new FormData(form);
     fetching = true;
-    fetch("http://localhost:8000/pdf/upload/", {
+    fetch("/pdf/upload/", {
       method: "POST",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),

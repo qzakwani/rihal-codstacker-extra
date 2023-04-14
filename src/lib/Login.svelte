@@ -10,7 +10,7 @@
   function login() {
     _status = 2;
     msg = {};
-    fetch("http://localhost:8000/account/login/", {
+    fetch("/account/login/", {
       method: "POST",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),
@@ -34,7 +34,7 @@
     _status = 2;
     msg = {};
     const credentials = new FormData(form);
-    fetch("http://localhost:8000/account/sign-up/", {
+    fetch("/account/sign-up/", {
       method: "POST",
       body: credentials,
     })

@@ -7,15 +7,12 @@
 
   function load() {
     fetching = true;
-    fetch(
-      "http://localhost:8000/pdf/list-sentences/" + $_pdf.id.toString() + "/",
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + btoa($username + ":" + $password),
-        },
-      }
-    )
+    fetch("/pdf/list-sentences/" + $_pdf.id.toString() + "/", {
+      method: "GET",
+      headers: {
+        Authorization: "Basic " + btoa($username + ":" + $password),
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         res = data.sentences;

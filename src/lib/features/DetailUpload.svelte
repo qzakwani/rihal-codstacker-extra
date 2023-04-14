@@ -6,15 +6,12 @@
   let status = pdf.parsing_status;
 
   function fetchStatus() {
-    fetch(
-      "http://localhost:8000/pdf/parsing-status/" + pdf.id.toString() + "/",
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + btoa($username + ":" + $password),
-        },
-      }
-    )
+    fetch("/pdf/parsing-status/" + pdf.id.toString() + "/", {
+      method: "GET",
+      headers: {
+        Authorization: "Basic " + btoa($username + ":" + $password),
+      },
+    })
       .then((res) => {
         if (res.ok) {
           return res.json();

@@ -12,7 +12,7 @@
   function refresh() {
     res = {};
     fetching = true;
-    fetch("http://localhost:8000/search/top5/" + $_pdf.id.toString() + "/", {
+    fetch("/search/top5/" + $_pdf.id.toString() + "/", {
       method: "POST",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),
@@ -37,7 +37,7 @@
       return;
     } else {
       fetchingSW = true;
-      fetch("http://localhost:8000/search/stop-words/", {
+      fetch("/search/stop-words/", {
         method: "GET",
         headers: {
           Authorization: "Basic " + btoa($username + ":" + $password),

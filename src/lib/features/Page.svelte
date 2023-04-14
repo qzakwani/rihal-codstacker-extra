@@ -16,11 +16,7 @@
       $_pdf.file_name.split(".")[0] + "_page_" + p.toString() + "." + format;
     const payload = new FormData(form);
     fetch(
-      "http://localhost:8000/pdf/" +
-        $_pdf.id.toString() +
-        "/download-page/" +
-        p.toString() +
-        "/",
+      "/pdf/" + $_pdf.id.toString() + "/download-page/" + p.toString() + "/",
       {
         method: "POST",
         headers: {

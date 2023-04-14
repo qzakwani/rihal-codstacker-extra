@@ -13,19 +13,12 @@
     }
     res = {};
     fetching = true;
-    fetch(
-      "http://localhost:8000/search/count-word/" +
-        $_pdf.id.toString() +
-        "/" +
-        word +
-        "/",
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + btoa($username + ":" + $password),
-        },
-      }
-    )
+    fetch("/search/count-word/" + $_pdf.id.toString() + "/" + word + "/", {
+      method: "GET",
+      headers: {
+        Authorization: "Basic " + btoa($username + ":" + $password),
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         res = data;

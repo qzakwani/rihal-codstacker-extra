@@ -31,7 +31,7 @@
 
   function downloadPDF() {
     downloading = true;
-    fetch("http://localhost:8000/pdf/download/" + pdf.id.toString() + "/", {
+    fetch("/pdf/download/" + pdf.id.toString() + "/", {
       method: "GET",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),
@@ -46,7 +46,7 @@
 
   function _delete() {
     deleting = true;
-    fetch("http://localhost:8000/pdf/delete/" + pdf.id.toString() + "/", {
+    fetch("/pdf/delete/" + pdf.id.toString() + "/", {
       method: "DELETE",
       headers: {
         Authorization: "Basic " + btoa($username + ":" + $password),
