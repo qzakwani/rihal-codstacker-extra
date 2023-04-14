@@ -7,8 +7,10 @@
 </script>
 
 <div class="tooltip" class:top class:bottom class:left class:right>
+  <div id="element">
+    <slot />
+  </div>
   <span class="tip">{tip}</span>
-  <slot />
 </div>
 
 <style>
@@ -21,12 +23,14 @@
     border-width: 5px;
     border-style: solid;
     opacity: 0;
+    visibility: hidden;
     transition: opacity 300ms ease-out;
     transition-delay: 300ms;
   }
   .tip {
     position: absolute;
     opacity: 0;
+    visibility: hidden;
     padding: 8px 12px;
     font-size: 12px;
     font-weight: 500;
@@ -36,10 +40,11 @@
     min-width: 100px;
     text-align: center;
     transition: opacity 300ms ease-out;
-    transition-delay: 300ms;
+    transition-delay: 500ms;
   }
-  .tooltip:hover .tip,
+  #element:hover + .tip,
   .tooltip:hover.tooltip::before {
+    visibility: visible;
     opacity: 1;
   }
   .top .tip {

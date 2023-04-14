@@ -26,8 +26,8 @@
       }}
       class:selected={page === "about"}>About</button
     >
-    <a href="/docs" target="_blank" class="m-btn">Docs</a>
-    <a href="/docs/v2" target="_blank" class="m-btn">Docs V2</a>
+    <a href="/docs/" target="_blank" class="m-btn">Docs</a>
+    <a href="/docs/v2/" target="_blank" class="m-btn">Docs V2</a>
     <label for="theme" class="switch">
       <svg
         xmlns="http://www.w3.org/2000/svg"
