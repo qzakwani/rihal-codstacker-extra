@@ -30,7 +30,7 @@
     count++;
     fetchStatus();
     if (count <= 10 && status === "IN PROCESS") {
-      _id = setTimeout(checkStatus, 1000);
+      _id = setTimeout(checkStatus, 2000);
     }
   }
   checkStatus();
@@ -46,7 +46,16 @@
       style="background-color: #FFCC00; color: black; display: flex; align-items: center; gap: 10px"
     >
       {status}
-      <Loading size={18} color="black" />
+      {#if count <= 10}
+        <Loading size={18} color="black" />
+      {:else}
+        <button
+          on:click={() => {
+            count = 0;
+            checkStatus();
+          }}>check again</button
+        >
+      {/if}
     </p>
   {:else if status === "DONE"}
     <p style="background-color: green; color: black">{status}</p>

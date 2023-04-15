@@ -127,7 +127,12 @@
         style="min-width: 240px;"
       />
     {/if}
+    <pre>
+  Note: This will search for a word as given exactly (case-insensitive). 
+  So if searched for 'help', results with 'helps', 'helping' WILL NOT be returned!
 
+  IMPORTANT: for more capable search use Advanced Search.
+</pre>
     {#if fetching}
       <Loading />
     {:else}

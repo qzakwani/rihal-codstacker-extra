@@ -52,7 +52,7 @@ const ASM = {
   ph: `
     ph: Phrase search.
     The search's terms are treated as a single phrase. They don't get treated as separate words.
-    In theory, the search: "good luck" would give different result that "luck good"
+    In theory, the search: "good luck" would give different result than "luck good"
     `,
   eng: `
     eng: English search.
